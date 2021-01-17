@@ -77,21 +77,21 @@ def split_input_target(chunk):
 # 使用map方法调用该函数对每条序列进行划分
 dataset = sequences.map(split_input_target)
 
-# 查看划分后的第一批次结果
-for input_example, target_example in dataset.take(1):
-    print ('Input data: ', repr(''.join(idx2char[input_example.numpy()])))
-    print ('Target data:', repr(''.join(idx2char[target_example.numpy()])))
+# # 查看划分后的第一批次结果
+# for input_example, target_example in dataset.take(1):
+#     print ('Input data: ', repr(''.join(idx2char[input_example.numpy()])))
+#     print ('Target data:', repr(''.join(idx2char[target_example.numpy()])))
 
 # 输出效果:
 # Input data:  'First Citizen:\nBefore we proceed any further, hear me speak.\n\nAll:\nSpeak, speak.\n\nFirst Citizen:\nYou'
 # Target data: 'irst Citizen:\nBefore we proceed any further, hear me speak.\n\nAll:\nSpeak, speak.\n\nFirst Citizen:\nYou '
 
 # 查看将要输入模型中的每个时间步的输入和输出(以前五步为例)
-# 循环每个字符，并打印每个时间步对应的输入和输出
-for i, (input_idx, target_idx) in enumerate(zip(input_example[:5], target_example[:5])):
-    print("Step {:4d}".format(i))
-    print("  input: {} ({:s})".format(input_idx, repr(idx2char[input_idx])))
-    print("  expected output: {} ({:s})".format(target_idx, repr(idx2char[target_idx])))
+# # 循环每个字符，并打印每个时间步对应的输入和输出
+# for i, (input_idx, target_idx) in enumerate(zip(input_example[:5], target_example[:5])):
+#     print("Step {:4d}".format(i))
+#     print("  input: {} ({:s})".format(input_idx, repr(idx2char[input_idx])))
+#     print("  expected output: {} ({:s})".format(target_idx, repr(idx2char[target_idx])))
 
 # 输出效果：
 # Step    0
