@@ -42,7 +42,7 @@ print ('{} ---- characters mapped to int ---- > {}'.format(repr(text[:13]), text
 seq_length = 100
 # 获得样本总数
 examples_per_epoch = len(text)//seq_length
-# 将数值映射后的文本转换成dataset对象方便后续处理
+#  加载数据，将数值映射后的文本转换成dataset对象方便后续处理
 char_dataset = tf.data.Dataset.from_tensor_slices(text_as_int)
 
 # 通过dataset的take方法以及映射表查看前5个字符
@@ -60,6 +60,12 @@ sequences = char_dataset.batch(seq_length+1, drop_remainder=True)
 # 查看划分后的5条数据对应的文本内容
 for item in sequences.take(5):
     print(repr(''.join(idx2char[item.numpy()])))
+    
+# 'First Citizen:\nBefore we proceed any further, hear me speak.\n\nAll:\nSpeak, speak.\n\nFirst Citizen:\nYou '
+# 'are all resolved rather to die than to famish?\n\nAll:\nResolved. resolved.\n\nFirst Citizen:\nFirst, you k'
+# "now Caius Marcius is chief enemy to the people.\n\nAll:\nWe know't, we know't.\n\nFirst Citizen:\nLet us ki"
+# "ll him, and we'll have corn at our own price.\nIs't a verdict?\n\nAll:\nNo more talking on't; let it be d"
+# 'one: away, away!\n\nSecond Citizen:\nOne word, good citizens.\n\nFirst Citizen:\nWe are accounted poor citi'
 
 def split_input_target(chunk):
     """划分输入序列和目标序列函数"""
